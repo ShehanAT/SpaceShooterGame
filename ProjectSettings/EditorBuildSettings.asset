@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/mainMenuScene.unity
+    guid: 661f958e4e88040bab47eba84ac0f8d4
+  - enabled: 1
+    path: Assets/ConfigScene.unity
+    guid: bfebdfe8c2b8a43ee9f7e6ddf7abc01c
+  - enabled: 1
+    path: Assets/AudioScene.unity
+    guid: 3ff2d7431bed24bcb8ceac819f3cc077
+  - enabled: 1
+    path: Assets/BackgroundScene.unity
+    guid: 1766813954b544d35be54deea3f392cf
+  - enabled: 1
+    path: Assets/EnemiesScene.unity
+    guid: 656ee6c591ac64f30b66177318e8f977
+  - enabled: 1
+    path: Assets/gameLevelScene2.unity
+    guid: dbae64a835caa42078ecf9a346b33861
+  - enabled: 1
+    path: Assets/SelectionScene.unity
+    guid: 9720eb4e1d2104848a836f212f03680b
+  - enabled: 1
+    path: Assets/HistoryScene.unity
+    guid: 6fa6181875ca34a7d85cd3c4ddf43d04
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/gameLevelsScene.unity
+    guid: 62aebecdbd76a454c91dcc0acdeda3fa
+  - enabled: 1
+    path: Assets/gameMainMenu.unity
+    guid: b4f32e5ccde934c9d81aad8ad3f3a792
+  - enabled: 1
+    path: Assets/BronzeLevelWin.unity
+    guid: bc1f85b659527443e82a713b0d3e29b6
+  - enabled: 1
+    path: Assets/GoldLevelWin.unity
+    guid: 21ca4a64ebba04e4aabbf28a3c859ad0
+  - enabled: 1
+    path: Assets/SilverLevelWin.unity
+    guid: 7c53734be4dee4a36aab77ed4120c3e5
+  - enabled: 1
+    path: Assets/_Scene_0.unity
+    guid: 9e0aabca4acbc4d3cb1c928b68a1cc70
+  - enabled: 1
+    path: Assets/LoginScene.unity
+    guid: f7a663ef8886246a59f6f87860a76b2e
+  - enabled: 1
+    path: Assets/navMenuScene.unity
+    guid: 80dc7cd6933b04d6c86e25d54bf0525b
+  - enabled: 1
+    path: Assets/DeleteUserScene.unity
+    guid: 882811eb4567a4d918930beb2755a80b
+  - enabled: 1
+    path: Assets/CreateNewUser.unity
+    guid: c2879c500e13b4008ae0d1d4642382ad
+  - enabled: 1
+    path: Assets/_Scene_0ApplePicker.unity
+    guid: 99140b24c4170437f945ec1b2c0efd2a
+  m_configObjects: {}

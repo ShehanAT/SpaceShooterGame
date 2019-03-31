@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 95d947f953c994df3be7eb3442242aba
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - winScoreText: {fileID: 7903543611632792510, guid: 0aa508a1853f74813a737a6dad1b0d65,
+      type: 3}
+  - InvalidText: {fileID: 9173880559472780173, guid: f8de195239cbc447c8ec3a0b79ddadde,
+      type: 3}
+  - gameLevelText: {instanceID: 0}
+  - enemy0: {instanceID: 0}
+  - enemy1: {instanceID: 0}
+  - enemy2: {instanceID: 0}
+  - enemy3: {instanceID: 0}
+  - enemy4: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
