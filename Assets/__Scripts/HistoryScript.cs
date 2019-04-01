@@ -4,25 +4,53 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
 using UnityEngine.UI;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 public class HistoryScript : MonoBehaviour
 {
-    public GameObject player1;
-    public GameObject player2;
-    public GameObject player3;
+
+    public StreamReader reader = null;
+    public string text = "";
+    public GameObject displayLogins;
+    public Dictionary<string, string> loginTimes;
     // Start is called before the first frame update
    //public List<string> userList = new List<string>();
     void Start()
     {
-        player1.GetComponent<Text>().text = PlayerPrefs.GetString("currentUser1LoginTime")+ "\nHighest Score: " + PlayerPrefs.GetInt("currentUser1HighestScore").ToString();
-        player2.GetComponent<Text>().text = PlayerPrefs.GetString("currentUser2LoginTime") + "\nHighest Score: " + PlayerPrefs.GetInt("currentUser2HighestScore").ToString();
-        player3.GetComponent<Text>().text = PlayerPrefs.GetString("currentUser3LoginTime") + "\nHighest Score: " + PlayerPrefs.GetInt("currentUser3HighestScore").ToString();
+        loginTimes = new Dictionary<string, string>();
+        getLoginTimes();
+    }
+    public void getLoginTimes()
+    {
+        if(File.Exists("/Users/shehanatukorala/Library/Application Support/DefaultCompany/atukoran_SpaceShootProject" + "/Login.txt"))
+        {
+            FileInfo sourceFile = new FileInfo("/Users/shehanatukorala/Library/Application Support/DefaultCompany/atukoran_SpaceShootProject" + "/Login.txt");
+            reader = sourceFile.OpenText();
 
+
+        }
+        text = reader.ReadLine();
+        while (text != null)
+        {
+            loginTimes.Add(text, text);
+            text = reader.ReadLine();
+
+        }
+        foreach (System.Collections.Generic.KeyValuePair<string, string> i in loginTimes)
+        {
+            displayLogins.GetComponent<Text>().text += i.Value + "\n";
+        }
+    }
+    public void goToNavSceneMenu()
+    {
+        SceneManager.LoadScene("navMenuScene");
+        DontDestroyOnLoad(this.gameObject);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+      
     }
 }

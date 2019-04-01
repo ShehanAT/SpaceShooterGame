@@ -90,7 +90,10 @@ public class createUserScript : MonoBehaviour
             Debug.Log("userName is " + userNameField.text + " password is " + passwordField.text);
             PlayerPrefs.SetString("newPassword", passwordField.text);
             PlayerPrefs.SetString("newUserName", userNameField.text);
+            PlayerPrefs.SetString("newPlayerStatus", userNameField.text);
+
             userList.Add(userNameField.text, passwordField.text);
+            
            // data.Add(userNameField.text, passwordField.text);
             SaveData();
             foreach (System.Collections.Generic.KeyValuePair<string, string> i in userList)

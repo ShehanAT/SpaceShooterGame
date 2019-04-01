@@ -39,6 +39,7 @@ public class loginScript : MonoBehaviour
         InvalidText.SetActive(false);
         loginButton.onClick.AddListener(adminDetails);
     }
+    public Dictionary<string, string> loginTime = new Dictionary<string, string>();
     public Dictionary<string, string> loginDetails = new Dictionary<string, string>
     {
         {"admin", "admin"},
@@ -133,15 +134,33 @@ public class loginScript : MonoBehaviour
             if(String.Compare(userName, "admin") == 0)
             {
                 PlayerPrefs.SetString("currentUser", "admin");
+                loginTime.Add(PlayerPrefs.GetString("currentUser"), PlayerPrefs.GetString("currentUser") + ", Logged in at: " + System.DateTime.Now.ToString());
+                PlayerPrefs.SetString("currentUserLoginTime", PlayerPrefs.GetString("currentUser") + ", Logged in at: " + System.DateTime.Now.ToString());
             }
             else
             {
                 PlayerPrefs.SetString("currentUser", userName);
+                loginTime.Add(PlayerPrefs.GetString("currentUser"), PlayerPrefs.GetString("currentUser") + ", Logged in at: " + System.DateTime.Now.ToString());
 
             }
+            saveLoginTimes();
             SceneManager.LoadScene("navMenuScene");
 
         }
+    }
+    public void saveLoginTimes()
+    {
+        if (File.Exists("/Users/shehanatukorala/Library/Application Support/DefaultCompany/atukoran_SpaceShootProject" + "/Login.txt"))
+        {
+            BinaryFormatter bf2 = new BinaryFormatter();
+            StreamWriter file2 = File.AppendText("/Users/shehanatukorala/Library/Application Support/DefaultCompany/atukoran_SpaceShootProject" + "/Login.txt");
+            foreach (System.Collections.Generic.KeyValuePair<string, string> i in loginTime)
+            {
+                file2.WriteLine(i.Value);
+
+            }
+            file2.Close();
+         }
     }
     //public void adminDetails()
     //{
