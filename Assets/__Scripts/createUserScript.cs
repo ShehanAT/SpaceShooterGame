@@ -23,7 +23,22 @@ public class createUserScript : MonoBehaviour
 
     void Start()
     {
-        LoadData();
+ 
+        StreamReader inp_stm = new StreamReader("/Users/shehanatukorala/Library/Application Support/DefaultCompany/atukoran_SpaceShootProject/Users.txt");
+        while (!inp_stm.EndOfStream)
+        {
+            string inp_ln = inp_stm.ReadLine();
+            string[] inp_arr = inp_ln.Split(' ');
+            userList.Add(inp_arr[0], inp_arr[1]);
+        }
+        inp_stm.Close();
+        Debug.Log("Before Deleting");
+        foreach (System.Collections.Generic.KeyValuePair<string, string> i in userList)
+        {
+            Debug.Log(i.Key + " " + i.Value);
+
+
+        }
     }
 
     // Update is called once per frame
@@ -31,49 +46,18 @@ public class createUserScript : MonoBehaviour
     {
         
     }
-    public void LoadData()
-    {
-        ////load login information if(File.Exists(Application.persistentDataPath + "/Login.gd")) {
-        //if (File.Exists(Application.persistentDataPath + "/Login.gd"))
-        //{
-        //    BinaryFormatter bf1 = new BinaryFormatter();
-        //    FileStream file1 = File.Open("/Users/shehanatukorala/Library/Application Support/DefaultCompany/atukoran_SpaceShootProject" +
-        //                                  "/Login.gd", FileMode.Open);
-        //        userList =
-        //  (Dictionary<string, string>)bf1.Deserialize(file1);
-          
-        //    file1.Close();
-       
-        //    //loginDetails = new Dictionary<string, string>(userList);
-        //}
-        //load user information
-        if (File.Exists("/Users/shehanatukorala/Library/Application Support/DefaultCompany/atukoran_SpaceShootProject" + "/Users.gd"))
-        {
-            BinaryFormatter bf2 = new BinaryFormatter();
-            FileStream file2 = File.Open("/Users/shehanatukorala/Library/Application Support/DefaultCompany/atukoran_SpaceShootProject" +
-                                 "/Users.gd", FileMode.Open);
-            userList =
-            (Dictionary<string, string>)bf2.Deserialize(file2);
-         
-            file2.Close();
-            // userData = new Dictionary<string, string>(data);
-        }
-    }
     public void SaveData()
     {
-        //BinaryFormatter bf1 = new BinaryFormatter();
-        //FileStream file1 = File.Create("/Users/shehanatukorala/Library/Application Support/DefaultCompany/atukoran_SpaceShootProject" +
-        //                                    "/Login.gd");
-        //// Dictionary<string, string> userList = new Dictionary<string, string>(loginDetails);
-      
-        //bf1.Serialize(file1, userList);
-        //file1.Close();
- 
-        BinaryFormatter bf2 = new BinaryFormatter();
-        FileStream file2 = File.Create("/Users/shehanatukorala/Library/Application Support/DefaultCompany/atukoran_SpaceShootProject" + "/Users.gd");
-        bf2.Serialize(file2, userList);
-        file2.Close();
+        if (File.Exists("/Users/shehanatukorala/Library/Application Support/DefaultCompany/atukoran_SpaceShootProject" + "/Users.txt"))
+        {
+            StreamWriter file2 = File.CreateText("/Users/shehanatukorala/Library/Application Support/DefaultCompany/atukoran_SpaceShootProject" + "/Users.txt");
+            foreach (System.Collections.Generic.KeyValuePair<string, string> i in userList)
+            {
+                file2.WriteLine(i.Key + " " + i.Value);
+            }
+            file2.Close();
 
+        }
     }
     public Dictionary<string, string> loginDetails = new Dictionary<string, string>
     {
