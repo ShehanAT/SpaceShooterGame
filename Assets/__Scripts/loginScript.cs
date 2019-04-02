@@ -18,16 +18,18 @@ public class loginScript : MonoBehaviour
     createUserScript createUser;
     static int counter = 0;
     public Dictionary<string, string> login;
-    public Dictionary<string, string> userData;
+    public Dictionary<string, string> userData = new Dictionary<string, string>();
+
+
     // Start is called before the first frame update
     void Start()
     {
        
         LoadData();
-        userData.Add("admin", "admin");
-        userData.Add("Shehan", "Shehan");
-        userData.Add("Cezar", "Cezar");
-        userData.Add("Meer", "Meer");
+     //  userData.Add("admin", "admin");
+      //  userData.Add("Shehan", "Shehan");
+      //  userData.Add("Cezar", "Cezar");
+      //  userData.Add("Meer", "Meer");
         foreach (System.Collections.Generic.KeyValuePair<string, string> i in userData)
         {
             Debug.Log(i.Value);
@@ -49,32 +51,27 @@ public class loginScript : MonoBehaviour
     };
     public void LoadData()
     {
-        //load login information if(File.Exists(Application.persistentDataPath + "/Login.gd")) {
-        //if (File.Exists(Application.persistentDataPath + "/Login.gd"))
-        //{
-        //    BinaryFormatter bf1 = new BinaryFormatter();
-        //    FileStream file1 = File.Open("/Users/shehanatukorala/Library/Application Support/DefaultCompany/atukoran_SpaceShootProject" +
-        //                                  "/Login.gd", FileMode.Open);
-        //    userData =
-        // (Dictionary<string, string>)bf1.Deserialize(file1);
-        //    file1.Close();
-        //    // login = new Dictionary<string, string>(userList);
-        //}
-        //load user information
+   
         if (File.Exists("/Users/shehanatukorala/Library/Application Support/DefaultCompany/atukoran_SpaceShootProject" + "/Users.gd"))
         {
-            BinaryFormatter bf2 = new BinaryFormatter();
-            FileStream file2 = File.Open("/Users/shehanatukorala/Library/Application Support/DefaultCompany/atukoran_SpaceShootProject" +
-                                 "/Users.gd", FileMode.Open);
-            userData =
-            (Dictionary<string, string>)bf2.Deserialize(file2);
-           
+          //  string[] linesInFile = TextFile.text.Split('\n');
+            StreamReader inp_stm = new StreamReader("/Users/shehanatukorala/Library/Application Support/DefaultCompany/atukoran_SpaceShootProject/Users.txt");
+            while (!inp_stm.EndOfStream)
+            {
+                string inp_ln = inp_stm.ReadLine();
+                string[] inp_arr = inp_ln.Split(' ');
+                userData.Add(inp_arr[0], inp_arr[1]);
+            }
+            inp_stm.Close();
+         
+            Debug.Log("Before Deleting");
             foreach (System.Collections.Generic.KeyValuePair<string, string> i in userData)
             {
-                Debug.Log(i.Value);
+                Debug.Log(i.Key + " " + i.Value);
+
 
             }
-            file2.Close();
+
             //userData = new Dictionary<string, string>(data); }
         }
     }
@@ -95,34 +92,6 @@ public class loginScript : MonoBehaviour
         file2.Close();
     }
   
-
-    //public void adminDetails()
-    //{
-    //    string userName = userNameField.text;
-    //    string password = passwordField.text;
-
-    //    string foundPassword;
-    //    if(loginDetails.TryGetValue(userName, out foundPassword) && (String.Compare(foundPassword,password) == 0))
-    //    {
-    //        if (String.Compare(userName, "admin") == 0)
-    //        {
-    //            PlayerPrefs.SetString("currentUser", "admin");
-    //            Debug.Log("ADMIN HAS LOGGED IN");
-    //            SceneManager.LoadScene("navMenuScene");
-    //        }
-    //        else
-    //        {
-    //            PlayerPrefs.SetString("currentUser", userName);
-    //            SceneManager.LoadScene("navMenuScene");
-    //        }
-           
-    //    }
-    //    else
-    //    {
-    //        Debug.Log("Invalid password");
-    //        InvalidText.SetActive(true);
-    //    }
-    ////}
       public void adminDetails()
     {
         string userName = userNameField.text;
@@ -147,6 +116,10 @@ public class loginScript : MonoBehaviour
             SceneManager.LoadScene("navMenuScene");
 
         }
+        else
+        {
+            InvalidText.SetActive(true);
+        }
     }
     public void saveLoginTimes()
     {
@@ -162,122 +135,21 @@ public class loginScript : MonoBehaviour
             file2.Close();
          }
     }
-    //public void adminDetails()
-    //{
-    //    string userName = userNameField.text;
-    //    string password = passwordField.text;
+    public void saveLoginUsers()
+    {
+        if(File.Exists("/Users/shehanatukorala/Library/Application Support/DefaultCompany/atukoran_SpaceShootProject" + "/Login.txt"))
+        {
+           
+        }
+    
+    }
 
-    //    string foundPassword;
-    //    if(loginDetails.TryGetValue(userName, out foundPassword) && (String.Compare(foundPassword, password) == 0))
-    //    {
-    //        counter++;
-    //        if(String.Compare(userName, "admin") == 0)
-    //        {
-    //            PlayerPrefs.SetString("currentUser", "admin");
-    //            if (counter == 1)
-    //            {
-    //                PlayerPrefs.SetString("currentUser1LoginTime", PlayerPrefs.GetString("currentUser") + ", Logged in at: " + System.DateTime.Now.ToString());
-
-    //            }
-    //            else if (counter == 2)
-    //            {
-    //                PlayerPrefs.SetString("currentUser2LoginTime", PlayerPrefs.GetString("currentUser") + ", Logged in at: " + System.DateTime.Now.ToString());
-
-    //            }
-    //            if (counter == 3)
-    //            {
-    //                PlayerPrefs.SetString("currentUser3LoginTime", PlayerPrefs.GetString("currentUser") + ", Logged in at: " + System.DateTime.Now.ToString());
-    //                counter = 0;
-
-    //            }
-    //            SceneManager.LoadScene("navMenuScene");
-    //        }
-    //        else
-    //        {
-    //            PlayerPrefs.SetString("currentUser", userName);
-    //            if (counter == 1)
-    //            {
-    //                PlayerPrefs.SetString("currentUser1LoginTime", PlayerPrefs.GetString("currentUser") + ", Logged in at: " + System.DateTime.Now.ToString());
-    //                PlayerPrefs.SetInt("currentUser1HighestScore", PlayerPrefs.GetInt(PlayerPrefs.GetString("currentUser") + "score" ));
-
-    //            }
-    //            if (counter == 2)
-    //            {
-    //                PlayerPrefs.SetString("currentUser2LoginTime", PlayerPrefs.GetString("currentUser") + ", Logged in at: " + System.DateTime.Now.ToString());
-    //                PlayerPrefs.SetInt("currentUser2HighestScore", PlayerPrefs.GetInt(PlayerPrefs.GetString("currentUser") + "score"));
-    //            }
-    //            if (counter == 3)
-    //            {
-    //                PlayerPrefs.SetString("currentUser3LoginTime", PlayerPrefs.GetString("currentUser") + ", Logged in at: " + System.DateTime.Now.ToString());
-    //                PlayerPrefs.SetInt("currentUser3HighestScore", PlayerPrefs.GetInt(PlayerPrefs.GetString("currentUser") + "score"));
-    //                counter = 0;
-
-    //            }
-    //            SceneManager.LoadScene("navMenuScene");
-    //        }
-
-
-
-    //    }
-    //    else if((String.Compare(PlayerPrefs.GetString("newPassword"), password) == 0) && (String.Compare(PlayerPrefs.GetString("newUserName"), userName) == 0))
-    //    {
-    //        counter++;
-    //        if (String.Compare(userName, "admin") == 0)
-    //        {
-    //            PlayerPrefs.SetString("currentUser", "admin");
-    //            if (counter == 1)
-    //            {
-    //                PlayerPrefs.SetString("currentUser1LoginTime", PlayerPrefs.GetString("currentUser") + ", Logged in at: " + System.DateTime.Now.ToString());
-
-    //            }
-    //            if (counter == 2)
-    //            {
-    //                PlayerPrefs.SetString("currentUser2LoginTime", PlayerPrefs.GetString("currentUser") + ", Logged in at: " + System.DateTime.Now.ToString());
-
-    //            }
-    //            if (counter == 3)
-    //            {
-    //                PlayerPrefs.SetString("currentUser3LoginTime", PlayerPrefs.GetString("currentUser") + ", Logged in at: " + System.DateTime.Now.ToString());
-    //                counter = 0;
-
-    //            }
-    //            SceneManager.LoadScene("navMenuScene");
-    //        }
-    //        else
-    //        {
-    //            PlayerPrefs.SetString("currentUser", userName);
-    //            if (counter == 1)
-    //            {
-    //                PlayerPrefs.SetString("currentUser1LoginTime", PlayerPrefs.GetString("currentUser") + ", Logged in at: " + System.DateTime.Now.ToString());
-
-    //            }
-    //            if (counter == 2)
-    //            {
-    //                PlayerPrefs.SetString("currentUser2LoginTime", PlayerPrefs.GetString("currentUser") + ", Logged in at: " + System.DateTime.Now.ToString());
-
-    //            }
-    //            if (counter == 3)
-    //            {
-    //                PlayerPrefs.SetString("currentUser3LoginTime", PlayerPrefs.GetString("currentUser") + ", Logged in at: " + System.DateTime.Now.ToString());
-    //                counter = 0;
-
-    //            }
-    //            SceneManager.LoadScene("navMenuScene");
-    //        }
-    //        PlayerPrefs.SetString("newUserName", "");
-    //        PlayerPrefs.SetString("newPassword", "");
-
-
-    //    }
-    //    else
-    //    {
-    //        Debug.Log("Invalid password");
-    //        InvalidText.SetActive(true);
-    //    }
-
-    //}
 
     // Update is called once per frame
+    public void exitGame()
+    {
+        Application.Quit();
+    }
     void Update()
     {
         

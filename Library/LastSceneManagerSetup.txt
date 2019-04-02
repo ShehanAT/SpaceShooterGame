@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/navMenuScene.unity
+- path: Assets/DeleteUserScene.unity
   isLoaded: 1
   isActive: 1

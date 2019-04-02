@@ -16,16 +16,18 @@ public class navMenuScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (PlayerPrefs.GetString("currentUser").CompareTo(PlayerPrefs.GetString("newPlayerStatus")))
-        {
-
-        }
-
-        if (PlayerPrefs.GetInt("newUserAdded") == 1)
+        if (PlayerPrefs.GetString("currentUser").CompareTo(PlayerPrefs.GetString("newPlayerStatus")) == 0)
         {
             notificationText.GetComponent<Text>().text = "new user " + PlayerPrefs.GetString("newUser") + " added";
-            PlayerPrefs.SetInt("newUserAdded", 0);
+
+
         }
+
+        //if (PlayerPrefs.GetInt("newUserAdded") == 1)
+        //{
+        //    notificationText.GetComponent<Text>().text = "new user " + PlayerPrefs.GetString("newUser") + " added";
+        //    PlayerPrefs.SetInt("newUserAdded", 0);
+        //}
         
         if (String.Compare(PlayerPrefs.GetString("currentUser"), "admin") == 0)
         {
